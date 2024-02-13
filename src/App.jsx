@@ -16,8 +16,13 @@ const App = () => {
       <ToggleButton text="Nappula" />
       <ToggleButton text="Toinen" icon={<FaBars />} />
       <ToggleButton text="Kolmas" icon={<FaCheck />} iconSide="right" />
-      <ToggleButton text="Neljäs" size="small" />
-      <ToggleButton text="Viides..." size="large" onClickFnc={moreButtons} />
+      <ToggleButton text="Neljäs" size="small" initiallsPressed="true" />
+      <ToggleButton
+        text="Viides..."
+        size="large"
+        onClickFnc={moreButtons}
+        initiallsPressed="true"
+      />
       {moreBtns ? (
         <>
           <ToggleButton text="Sikana" />

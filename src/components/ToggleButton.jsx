@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const ToggleButton = ({ text, icon, iconSide, size, onClickFnc }) => {
-  const [isPressed, setIsPressed] = useState(false);
+const ToggleButton = ({
+  text,
+  icon,
+  iconSide,
+  size,
+  onClickFnc,
+  initiallsPressed,
+}) => {
+  const [isPressed, setIsPressed] = useState(initiallsPressed || false);
   let buttonContent = text;
   const buttonIcon = icon;
   const buttonIconSide = iconSide; // right or left
@@ -36,6 +43,12 @@ const ToggleButton = ({ text, icon, iconSide, size, onClickFnc }) => {
       );
     }
   }
+
+  useEffect(() => {
+    if (onClickFnc && initiallsPressed) {
+      onClickFnc();
+    }
+  }, []);
 
   return (
     <button
