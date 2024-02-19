@@ -15,6 +15,7 @@ const ToggleButton = ({
   const buttonSize = size; // small, medium, large
 
   let buttonSizeClass = "text-base";
+  let buttonSideClass = "flex row gap-2 items-center";
 
   if (buttonSize === "small") {
     buttonSizeClass = "text-xs";
@@ -23,32 +24,14 @@ const ToggleButton = ({
     buttonSizeClass = "text-2xl";
   }
 
-  const pressedClass = `bg-green-500 hover:bg-green-700 ${buttonSizeClass} text-white font-bold py-2 px-4 rounded my-2 shadow-inner flex flex-row`;
-  const unpressedClass = `bg-blue-500 hover:bg-blue-700 ${buttonSizeClass} text-white font-bold py-2 px-4 rounded my-2 shadow-md flex flex-row`;
-
   if (buttonIcon) {
     if (buttonIconSide === "right") {
-      buttonContent = (
-        <>
-          {buttonContent}
-          <div className="my-auto ml-2">{buttonIcon}</div>
-        </>
-      );
-    } else {
-      buttonContent = (
-        <>
-          <div className="my-auto mr-2">{buttonIcon}</div>
-          {buttonContent}
-        </>
-      );
+      buttonSideClass = "flex flex-row-reverse gap-2 items-center";
     }
   }
 
-  useEffect(() => {
-    if (onClickFnc && initiallsPressed) {
-      onClickFnc();
-    }
-  }, []);
+  const pressedClass = `bg-green-500 hover:bg-green-700 ${buttonSizeClass} ${buttonSideClass} text-white font-bold py-2 px-4 rounded my-2 shadow-inner flex flex-row`;
+  const unpressedClass = `bg-blue-500 hover:bg-blue-700 ${buttonSizeClass} ${buttonSideClass} text-white font-bold py-2 px-4 rounded my-2 shadow-md flex flex-row`;
 
   return (
     <button
@@ -61,7 +44,10 @@ const ToggleButton = ({
       }}
       aria-pressed={isPressed}
     >
-      {buttonContent}
+      <div className={buttonSideClass}>
+        {buttonIcon}
+        {buttonContent}
+      </div>
     </button>
   );
 };
